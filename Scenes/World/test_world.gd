@@ -2,11 +2,14 @@ extends Node2D
 
 @onready var player_figure = $Figures/PlayerFigure
 @onready var projectiles = $Projectiles
+@onready var figures = $Figures
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player_figure.connect("create_projectile", add_projectile)
+	for f:figure in figures.get_children():
+		
+		f.connect("create_projectile", add_projectile)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
