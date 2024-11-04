@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk8plt5xrpauo"]
+
+[ext_resource type="Script" path="res://Scenes/World/test_world.gd" id="1_e1uw3"]
+[ext_resource type="PackedScene" uid="uid://b03evrtyj3ug4" path="res://Scenes/Characters/Figure/figure.tscn" id="1_epcsj"]
+
+[node name="TestWorld" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_e1uw3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Figures" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="PlayerFigure" parent="Figures" instance=ExtResource("1_epcsj")]
+player_char = true
+
+[node name="Figure2" parent="Figures" instance=ExtResource("1_epcsj")]
+position = Vector2(51, 15)
+char_color = Color(1, 0, 0.168627, 1)
+
+[node name="Figure3" parent="Figures" instance=ExtResource("1_epcsj")]
+position = Vector2(19, 51)
+
+[node name="Projectiles" type="Node2D" parent="."]
+y_sort_enabled = true
