@@ -22,7 +22,7 @@ position = Vector2(74, 11)
 char_color = Color(1, 1, 0, 1)
 
 [node name="TallFigure" parent="Figures" instance=ExtResource("4_3xe1x")]
-position = Vector2(77, -5)
+position = Vector2(71, 38)
 char_color = Color(0.823529, 0.298039, 1, 1)
 
 [node name="Projectiles" type="Node2D" parent="."]

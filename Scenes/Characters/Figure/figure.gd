@@ -14,11 +14,17 @@ const PROJECTILE = preload("res://Scenes/Projectiles/projectile.tscn")
 @onready var hurtbox = $Hurtbox
 
 @onready var body_sprite = $VisualNode/BodySprite
+@onready var head_sprite = $VisualNode/HeadSprite
+
+@onready var outline_creator = $OutlineCreator
+@onready var outline_body = $OutlineCreator/OutlineBody
+@onready var outline_head = $OutlineCreator/OutlineHead
 
 @export var player_char: bool = false
 @export var char_color: Color = Color.WHITE
 
 @export var Player_Shot_speed: float = 20.0
+
 
 func _ready():
 	if player_char:
@@ -28,6 +34,7 @@ func _ready():
 		body_sprite.modulate = char_color
 
 func _process(_delta):
+	
 	if player_char:
 		
 		aim.look_at(get_global_mouse_position())
@@ -64,7 +71,7 @@ func _process(_delta):
 	move_and_slide()
 
 
-func shoot(multip: int):
+func shoot(multip: float):
 	var pro_inst = PROJECTILE.instantiate()
 	pro_inst.Creator = self
 	
@@ -76,3 +83,19 @@ func shoot(multip: int):
 	pro_inst.global_position = aim.global_position
 	
 	create_projectile.emit(pro_inst)
+
+func _on_body_sprite_frame_changed():
+	outline_body.frame = body_sprite.frame
+
+func _on_head_sprite_frame_changed():
+	outline_head.frame = head_sprite.frame
+
+func show_outline():
+	outline_creator.visible = true
+
+func hide_outline():
+	outline_creator.visible = false
+
+func _on_hurtbox_input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton:
+		print(self)
