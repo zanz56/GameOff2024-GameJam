@@ -9,12 +9,6 @@ var hovered: HurtBox
 func _ready():
 	get_viewport().physics_object_picking_sort = true
 	get_viewport().physics_object_picking_first_only = true
-	
-	
-	
-	for f:figure in figures.get_children():
-		
-		f.connect("create_projectile", add_projectile)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -63,6 +57,10 @@ func _process(_delta):
 			r_lowest.hurt_owner.show_outline()
 		
 		hovered = r_lowest
+	
+	if Input.is_action_just_pressed("RightClick"):
+		if hovered != null:
+			hovered.hurt_owner.toggle_mark()
 
 func add_projectile(pr: Projectile):
 	projectiles.add_child(pr)

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://gdkwtsj5s7jn"]
+
+[ext_resource type="Script" path="res://Scenes/Components/main_sprite.gd" id="1_fjpcr"]
+
+[node name="MainSprite" type="Sprite2D"]
+script = ExtResource("1_fjpcr")
+
+[connection signal="frame_changed" from="." to="." method="_on_frame_changed"]
+[connection signal="texture_changed" from="." to="." method="_on_texture_changed"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

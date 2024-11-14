@@ -25,6 +25,7 @@ const PROJECTILE = preload("res://Scenes/Projectiles/projectile.tscn")
 
 @export var Player_Shot_speed: float = 20.0
 
+@export var is_protect_target: bool = false
 
 func _ready():
 	if player_char:
