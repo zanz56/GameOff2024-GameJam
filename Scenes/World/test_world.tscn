@@ -1,10 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dk8plt5xrpauo"]
+[gd_scene load_steps=3 format=3 uid="uid://dk8plt5xrpauo"]
 
 [ext_resource type="Script" path="res://Scenes/World/test_world.gd" id="1_e1uw3"]
-[ext_resource type="PackedScene" uid="uid://b03evrtyj3ug4" path="res://Scenes/Characters/Figure/figure.tscn" id="1_epcsj"]
-[ext_resource type="PackedScene" uid="uid://d0w8u43w4qv5s" path="res://Scenes/Characters/Figure/big_figure.tscn" id="3_p65me"]
-[ext_resource type="PackedScene" uid="uid://7xqv5tkp6cdu" path="res://Scenes/Objects/hoverable_object.tscn" id="3_ufw2j"]
-[ext_resource type="PackedScene" uid="uid://iqe7r57jqjsn" path="res://Scenes/Characters/Figure/tall_figure.tscn" id="4_3xe1x"]
+[ext_resource type="PackedScene" uid="uid://ce50kjh8ce3yg" path="res://Scenes/Objects/Figures/base_figure.tscn" id="5_0c7nq"]
 
 [node name="TestWorld" type="Node2D"]
 y_sort_enabled = true
@@ -15,23 +12,12 @@ script = ExtResource("1_e1uw3")
 [node name="Figures" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="HoverableObject" parent="Figures" instance=ExtResource("3_ufw2j")]
-position = Vector2(-87, 89)
-is_protect_target = true
+[node name="BaseFigure" parent="Figures" instance=ExtResource("5_0c7nq")]
+position = Vector2(-79, 60)
 
-[node name="HoverableObject2" parent="Figures" instance=ExtResource("3_ufw2j")]
-position = Vector2(-75, 118)
-
-[node name="PlayerFigure" parent="Figures" instance=ExtResource("1_epcsj")]
-player_char = true
-
-[node name="BigFigure" parent="Figures" instance=ExtResource("3_p65me")]
-position = Vector2(74, 11)
-char_color = Color(1, 1, 0, 1)
-
-[node name="TallFigure" parent="Figures" instance=ExtResource("4_3xe1x")]
-position = Vector2(77, -5)
-char_color = Color(0.823529, 0.298039, 1, 1)
+[node name="BaseFigure2" parent="Figures" instance=ExtResource("5_0c7nq")]
+position = Vector2(-58, 88)
+unselectable = true
 
 [node name="Projectiles" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -39,8 +25,4 @@ y_sort_enabled = true
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="mouse_entered" from="Figures/BigFigure" to="Figures/BigFigure" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Figures/BigFigure" to="Figures/BigFigure" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="Figures/TallFigure" to="Figures/TallFigure" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Figures/TallFigure" to="Figures/TallFigure" method="_on_mouse_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

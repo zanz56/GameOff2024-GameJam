@@ -38,16 +38,19 @@ func _process(_delta):
 	var lowest_val :float = -999999999999.9
 	
 	#find the body that is "in front"
-	for bod: HurtBox in r_bodies:
-		
-		if lowest_val == null:
-			r_lowest = bod
-			lowest_val = bod.hurt_owner.global_position.y
-			
-		elif bod.hurt_owner.global_position.y > lowest_val:
-			r_lowest = bod
-			lowest_val = bod.hurt_owner.global_position.y
-			
+	for bod in r_bodies:
+		if bod is HurtBox:
+			if lowest_val == null:
+				r_lowest = bod
+				lowest_val = bod.hurt_owner.global_position.y
+				
+			elif bod.hurt_owner.global_position.y > lowest_val:
+				r_lowest = bod
+				lowest_val = bod.hurt_owner.global_position.y
+	
+	if r_lowest != null:
+		if r_lowest.hurt_owner.unselectable:
+			r_lowest = null
 	
 	#outline correct body
 	if hovered != r_lowest:

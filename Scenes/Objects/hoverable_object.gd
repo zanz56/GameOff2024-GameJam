@@ -1,16 +1,20 @@
 extends Node2D
 
+class_name Hoverable
+
 
 @onready var outline_creator = $OutlineCreator
 
 @onready var visual_node = $VisualNode
-@onready var main_sprite = $VisualNode/ClothesSprite
 
+@export var unselectable: bool = false
 @export var is_protect_target: bool = false
 var is_marked: bool = false
 
 var is_ready: bool = false
+
 func _ready():
+	print("IMREADY")
 	if is_protect_target:
 		outline_creator.material.set_shader_parameter("line_colour", Color.GREEN)
 		outline_creator.visible = true
@@ -26,13 +30,6 @@ func _process(_delta):
 	#elif Input.is_action_pressed("Right"):
 		#visual_node.position.x +=5
 	pass
-
-func _on_timer_timeout():
-	main_sprite.frame = (main_sprite.frame + 1)%32
-	if main_sprite.frame == 10:
-		pass
-		#main_sprite.visible = false
-		#add_sprite(load("res://icon.svg"), Vector2(10, -5), 2, 2, 0)
 
 
 func _on_visual_node_child_entered_tree(node):
@@ -51,7 +48,13 @@ func _on_visual_node_child_exiting_tree(node):
 		node.duplicated_sprite.queue_free()
 
 func copy_sprite_to_outline(spr:MainSprite):
-	var copy = spr.duplicate()
+	var copy = Sprite2D.new()
+	copy.global_position = spr.global_position
+	copy.texture = spr.texture
+	copy.hframes = spr.hframes
+	copy.vframes = spr.vframes
+	copy.frame = spr.frame
+	#spr.duplicate()
 	spr.duplicated_sprite = copy
 	outline_creator.add_child(copy)
 

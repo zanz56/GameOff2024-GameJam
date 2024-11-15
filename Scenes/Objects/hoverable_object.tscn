@@ -1,20 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://7xqv5tkp6cdu"]
+[gd_scene load_steps=5 format=3 uid="uid://7xqv5tkp6cdu"]
 
 [ext_resource type="Script" path="res://Scenes/Objects/hoverable_object.gd" id="1_1mym1"]
 [ext_resource type="PackedScene" uid="uid://bc2ilgeapotia" path="res://Scenes/Components/hurtbox.tscn" id="1_m5x1l"]
-[ext_resource type="Shader" path="res://Scenes/Characters/Figure/Outline.gdshader" id="2_hxk1q"]
-[ext_resource type="Texture2D" uid="uid://laxq4eaip0ef" path="res://Resources/Sprites/Characters/Figure/FigureBW.png" id="3_n0hrw"]
-[ext_resource type="PackedScene" uid="uid://gdkwtsj5s7jn" path="res://Scenes/Components/main_sprite.tscn" id="3_w28mn"]
-[ext_resource type="Texture2D" uid="uid://chuuq4687815i" path="res://Resources/Sprites/Characters/Figure/FigureHead.png" id="5_7gmm8"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Outline.gdshader" id="2_hxk1q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q2woc"]
 resource_local_to_scene = true
 shader = ExtResource("2_hxk1q")
 shader_parameter/line_colour = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 2
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ac5oi"]
-size = Vector2(20, 74)
 
 [node name="HoverableObject" type="Node2D"]
 script = ExtResource("1_1mym1")
@@ -26,29 +20,8 @@ material = SubResource("ShaderMaterial_q2woc")
 
 [node name="VisualNode" type="Node2D" parent="."]
 
-[node name="HeadSprite" parent="VisualNode" instance=ExtResource("3_w28mn")]
-position = Vector2(0, -45)
-texture = ExtResource("5_7gmm8")
-hframes = 32
-
-[node name="ClothesSprite" parent="VisualNode" instance=ExtResource("3_w28mn")]
-position = Vector2(0, -45)
-texture = ExtResource("3_n0hrw")
-hframes = 32
-
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("hurt_owner") instance=ExtResource("1_m5x1l")]
 hurt_owner = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -39)
-shape = SubResource("RectangleShape2D_ac5oi")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
-autostart = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [connection signal="child_entered_tree" from="VisualNode" to="." method="_on_visual_node_child_entered_tree"]
 [connection signal="child_exiting_tree" from="VisualNode" to="." method="_on_visual_node_child_exiting_tree"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
