@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chuuq4687815i"
-path="res://.godot/imported/FigureHead.png-f4bbd7649b44eff328bab105f2a62bfd.ctex"
+uid="uid://dsdtt5qas8xqp"
+path="res://.godot/imported/PlayButtons4.png-93cb030b05e441eca18f57fec261c317.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Characters/Figure/FigureHead.png"
-dest_files=["res://.godot/imported/FigureHead.png-f4bbd7649b44eff328bab105f2a62bfd.ctex"]
+source_file="res://Resources/Sprites/UI/Player/PlayButtons4.png"
+dest_files=["res://.godot/imported/PlayButtons4.png-93cb030b05e441eca18f57fec261c317.ctex"]
 
 [params]
 

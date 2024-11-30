@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjop8fg8v7jwx"]
+
+[ext_resource type="PackedScene" uid="uid://cq244cu7oma5j" path="res://Scenes/Menus/options_menu.tscn" id="1_vru0i"]
+
+[node name="MainOptionsMenu" instance=ExtResource("1_vru0i")]
+
+[node name="NinePatchRect" parent="." index="0"]
+anchors_preset = 2
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = -311.0
+offset_right = 400.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 0

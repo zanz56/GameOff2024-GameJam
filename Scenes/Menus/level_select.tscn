@@ -1,0 +1,157 @@
+[gd_scene load_steps=5 format=3 uid="uid://vltbi35jk6a7"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/level_select.gd" id="1_bed46"]
+[ext_resource type="Theme" uid="uid://w073xaxkj70j" path="res://Themes/menu_theme.tres" id="1_i80aa"]
+[ext_resource type="Texture2D" uid="uid://cu7al4h4us08t" path="res://Resources/Sprites/UI/Menus/LevelSelectBG.png" id="2_b8b3x"]
+[ext_resource type="PackedScene" uid="uid://chvldwh2dohef" path="res://Scenes/Menus/MenuComponents/menu_button.tscn" id="2_ti15v"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bed46")
+
+[node name="BG" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="BG"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_b8b3x")
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 48.0
+offset_right = 474.0
+offset_bottom = 176.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="BG"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 46.0
+offset_right = 472.0
+offset_bottom = 178.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="BG"]
+layout_mode = 0
+offset_left = 486.0
+offset_top = 48.0
+offset_right = 626.0
+offset_bottom = 176.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="BG"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 46.0
+offset_right = 624.0
+offset_bottom = 178.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="BG"]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 192.0
+offset_right = 550.0
+offset_bottom = 320.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect10" type="ColorRect" parent="BG"]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 190.0
+offset_right = 548.0
+offset_bottom = 322.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect13" type="ColorRect" parent="BG"]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 366.0
+offset_right = 563.0
+offset_bottom = 440.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect14" type="ColorRect" parent="BG"]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 364.0
+offset_right = 561.0
+offset_bottom = 442.0
+color = Color(0, 0, 0, 1)
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -142.0
+offset_right = 142.0
+offset_bottom = 176.0
+grow_horizontal = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_i80aa")
+text = "Tasks"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TutorialLevelButton1" parent="Buttons/VBoxContainer/HBoxContainer" instance=ExtResource("2_ti15v")]
+custom_minimum_size = Vector2(136, 136)
+layout_mode = 2
+text = "T1"
+
+[node name="TutorialLevelButton2" parent="Buttons/VBoxContainer/HBoxContainer" instance=ExtResource("2_ti15v")]
+custom_minimum_size = Vector2(136, 136)
+layout_mode = 2
+text = "T2"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="LevelButton1" parent="Buttons/VBoxContainer/HBoxContainer2" instance=ExtResource("2_ti15v")]
+custom_minimum_size = Vector2(136, 136)
+layout_mode = 2
+text = "1"
+
+[node name="MarginContainer" type="MarginContainer" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+
+[node name="MenuButton" parent="Buttons/VBoxContainer/MarginContainer" instance=ExtResource("2_ti15v")]
+custom_minimum_size = Vector2(102, 82)
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="Buttons/VBoxContainer/HBoxContainer/TutorialLevelButton1" to="." method="_on_tutorial_level_button_1_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/HBoxContainer/TutorialLevelButton2" to="." method="_on_tutorial_level_button_2_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/HBoxContainer2/LevelButton1" to="." method="_on_level_button_1_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/MarginContainer/MenuButton" to="." method="_on_menu_button_pressed"]

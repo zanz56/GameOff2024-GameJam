@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://jsjkmdck577e"]
+
+[ext_resource type="PackedScene" uid="uid://7xqv5tkp6cdu" path="res://Scenes/Objects/hoverable_object.tscn" id="1_6hc6s"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Outline.gdshader" id="2_dwjyx"]
+[ext_resource type="Texture2D" uid="uid://bqf1mb8c7xc6b" path="res://Resources/Sprites/World/Wall1.png" id="3_alxf1"]
+[ext_resource type="PackedScene" uid="uid://gdkwtsj5s7jn" path="res://Scenes/Components/main_sprite.tscn" id="4_kxccj"]
+[ext_resource type="Texture2D" uid="uid://dohw7kn6fluul" path="res://Resources/Sprites/World/white.png" id="5_n5dva"]
+[ext_resource type="Texture2D" uid="uid://c6ecqqhaqprtp" path="res://Resources/Sprites/World/WallTop.png" id="6_t7qk4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ap370"]
+resource_local_to_scene = true
+shader = ExtResource("2_dwjyx")
+shader_parameter/line_colour = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2
+
+[node name="BrickWall" instance=ExtResource("1_6hc6s")]
+unselectable = true
+
+[node name="OutlineCreator" parent="." index="0"]
+material = SubResource("ShaderMaterial_ap370")
+
+[node name="Polygon2D2" type="Polygon2D" parent="OutlineCreator" index="0"]
+texture_repeat = 2
+position = Vector2(0, 15)
+texture = ExtResource("3_alxf1")
+polygon = PackedVector2Array(-32, -15, 32, -15, 32, -144, -32, -144)
+
+[node name="Polygon2D" type="Polygon2D" parent="VisualNode" index="0"]
+texture_repeat = 2
+position = Vector2(0, 14)
+texture = ExtResource("3_alxf1")
+polygon = PackedVector2Array(-32, -14, 32, -14, 32, -142, -32, -142)
+
+[node name="OutlineLeft" parent="VisualNode" index="1" instance=ExtResource("4_kxccj")]
+visible = false
+modulate = Color(0.172549, 0.117647, 0.192157, 1)
+position = Vector2(-33, -65)
+scale = Vector2(1, 65)
+texture = ExtResource("5_n5dva")
+
+[node name="OutlineRight" parent="VisualNode" index="2" instance=ExtResource("4_kxccj")]
+visible = false
+modulate = Color(0.172549, 0.117647, 0.192157, 1)
+position = Vector2(33, -65)
+scale = Vector2(1, 65)
+texture = ExtResource("5_n5dva")
+
+[node name="OutlineUp" parent="VisualNode" index="3" instance=ExtResource("4_kxccj")]
+modulate = Color(0.172549, 0.117647, 0.192157, 1)
+position = Vector2(9.53674e-07, -131)
+scale = Vector2(32, 0.999999)
+texture = ExtResource("5_n5dva")
+
+[node name="Polygon2D2" type="Polygon2D" parent="VisualNode" index="4"]
+texture_repeat = 2
+position = Vector2(-8, 2)
+texture = ExtResource("6_t7qk4")
+polygon = PackedVector2Array(-24, -128, -24, -132, 40, -132, 40, -128)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox" index="0"]
+polygon = PackedVector2Array(32, 0, 32, -130, -32, -130, -32, 0)

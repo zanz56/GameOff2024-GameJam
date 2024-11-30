@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://fbcqj8ds8aa2"]
+
+[ext_resource type="PackedScene" uid="uid://7xqv5tkp6cdu" path="res://Scenes/Objects/hoverable_object.tscn" id="1_g8enn"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Outline.gdshader" id="2_iw468"]
+[ext_resource type="PackedScene" uid="uid://gdkwtsj5s7jn" path="res://Scenes/Components/main_sprite.tscn" id="3_xiuyc"]
+[ext_resource type="Texture2D" uid="uid://x5kcs6uubc8i" path="res://Resources/Sprites/World/Bush.png" id="4_d7exr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6yk2"]
+resource_local_to_scene = true
+shader = ExtResource("2_iw468")
+shader_parameter/line_colour = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2
+
+[node name="Bush" instance=ExtResource("1_g8enn")]
+unselectable = true
+
+[node name="OutlineCreator" parent="." index="0"]
+material = SubResource("ShaderMaterial_c6yk2")
+
+[node name="MainSprite" parent="VisualNode" index="0" node_paths=PackedStringArray("collision") instance=ExtResource("3_xiuyc")]
+position = Vector2(-1, -24)
+texture = ExtResource("4_d7exr")
+collision = NodePath("../../Hurtbox/CollisionPolygon2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox" index="0"]

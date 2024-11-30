@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3 uid="uid://cewgtnr4w8quo"]
+
+[ext_resource type="Texture2D" uid="uid://b8ehphkjs1iwr" path="res://Resources/Sprites/UI/Menus/MenuPanel.png" id="1_c2afw"]
+[ext_resource type="Script" path="res://Scenes/Menus/credits_menu.gd" id="1_fsuvi"]
+[ext_resource type="Theme" uid="uid://w073xaxkj70j" path="res://Themes/menu_theme.tres" id="2_5himn"]
+[ext_resource type="PackedScene" uid="uid://chvldwh2dohef" path="res://Scenes/Menus/MenuComponents/menu_button.tscn" id="3_e1bmx"]
+
+[node name="Credits_Menu" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_fsuvi")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -218.0
+offset_right = 378.0
+grow_vertical = 0
+texture = ExtResource("1_c2afw")
+patch_margin_left = 44
+patch_margin_top = 32
+patch_margin_right = 40
+patch_margin_bottom = 32
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 8
+
+[node name="CreditsLabel" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_5himn")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+text = "CREDITS"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_5himn")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "Made for \"Game off 2024\" game jam
+free Glasgow font by: Not Jam
+Everything else by: Zanz23"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+
+[node name="ColorRect" type="ColorRect" parent="NinePatchRect/MarginContainer/VBoxContainer/MarginContainer2/MarginContainer"]
+custom_minimum_size = Vector2(96, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+
+[node name="ColorRect" type="ColorRect" parent="NinePatchRect/MarginContainer/VBoxContainer/MarginContainer2/MarginContainer2"]
+custom_minimum_size = Vector2(92, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 1)
+
+[node name="MenuButton" parent="NinePatchRect/MarginContainer/VBoxContainer/MarginContainer2" instance=ExtResource("3_e1bmx")]
+layout_mode = 2
+text = "Close"
+
+[connection signal="pressed" from="NinePatchRect/MarginContainer/VBoxContainer/MarginContainer2/MenuButton" to="." method="_on_menu_button_pressed"]

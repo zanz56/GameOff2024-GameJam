@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://ce50kjh8ce3yg"]
+[gd_scene load_steps=9 format=3 uid="uid://ce50kjh8ce3yg"]
 
 [ext_resource type="PackedScene" uid="uid://7xqv5tkp6cdu" path="res://Scenes/Objects/hoverable_object.tscn" id="1_wk0ep"]
+[ext_resource type="Script" path="res://Scenes/Objects/Figures/base_figure.gd" id="2_ixhwd"]
 [ext_resource type="Shader" path="res://Resources/Shaders/Outline.gdshader" id="2_w8hjj"]
 [ext_resource type="PackedScene" uid="uid://gdkwtsj5s7jn" path="res://Scenes/Components/main_sprite.tscn" id="3_uj80n"]
-[ext_resource type="Texture2D" uid="uid://chuuq4687815i" path="res://Resources/Sprites/Characters/Figure/FigureHead.png" id="4_03wn8"]
 [ext_resource type="Texture2D" uid="uid://laxq4eaip0ef" path="res://Resources/Sprites/Characters/Figure/FigureBW.png" id="4_j0xb6"]
+[ext_resource type="Texture2D" uid="uid://dxcfwdl5pl7ht" path="res://Resources/Sprites/Characters/Figure/FigureHeadBW.png" id="5_naxmh"]
+[ext_resource type="Texture2D" uid="uid://ddvt4enbg1y6d" path="res://Resources/Sprites/Characters/Figure/Hats/Hat.png" id="6_e6gxl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nftrg"]
 resource_local_to_scene = true
@@ -13,23 +15,39 @@ shader_parameter/line_colour = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 2
 
 [node name="BaseFigure" instance=ExtResource("1_wk0ep")]
+script = ExtResource("2_ixhwd")
+curr_dir = 1
+walk_frame = 0
+HatHeight = -68
+Hat_Color = Color(1, 1, 1, 1)
+Coat_Color = Color(1, 1, 1, 1)
 
 [node name="OutlineCreator" parent="." index="0"]
 material = SubResource("ShaderMaterial_nftrg")
 
-[node name="Head" parent="VisualNode" index="0" node_paths=PackedStringArray("collision") instance=ExtResource("3_uj80n")]
+[node name="HeadSprite" parent="VisualNode" index="0" node_paths=PackedStringArray("collision") instance=ExtResource("3_uj80n")]
 position = Vector2(0, -39)
-texture = ExtResource("4_03wn8")
-hframes = 32
+texture = ExtResource("5_naxmh")
+hframes = 24
 collision = NodePath("../../Hurtbox/HeadColl")
 
 [node name="CoatSprite" parent="VisualNode" index="1" node_paths=PackedStringArray("collision") instance=ExtResource("3_uj80n")]
 position = Vector2(0, -39)
 texture = ExtResource("4_j0xb6")
-hframes = 32
+hframes = 24
 collision = NodePath("../../Hurtbox/CoatColl")
 
-[node name="CoatColl" type="CollisionPolygon2D" parent="Hurtbox" index="0"]
+[node name="HatSprite" parent="VisualNode" index="2" node_paths=PackedStringArray("collision") instance=ExtResource("3_uj80n")]
+position = Vector2(0, -68)
+texture = ExtResource("6_e6gxl")
+hframes = 4
+collision = NodePath("../../Hurtbox/HatColl")
+
+[node name="HeadColl" type="CollisionPolygon2D" parent="Hurtbox" index="0"]
+
+[node name="CoatColl" type="CollisionPolygon2D" parent="Hurtbox" index="1"]
 position = Vector2(-326, -15)
 
-[node name="HeadColl" type="CollisionPolygon2D" parent="Hurtbox" index="1"]
+[node name="HatColl" type="CollisionPolygon2D" parent="Hurtbox" index="2"]
+
+[node name="HoldColl" type="CollisionPolygon2D" parent="Hurtbox" index="3"]

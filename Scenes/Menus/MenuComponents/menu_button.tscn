@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://chvldwh2dohef"]
+
+[ext_resource type="Theme" uid="uid://w073xaxkj70j" path="res://Themes/menu_theme.tres" id="3_pnafq"]
+
+[node name="MenuButton" type="Button"]
+offset_right = 138.0
+offset_bottom = 72.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_pnafq")
+text = "Testing"

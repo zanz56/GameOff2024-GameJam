@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://drvqex8kejrtf"]
+
+[ext_resource type="PackedScene" uid="uid://7xqv5tkp6cdu" path="res://Scenes/Objects/hoverable_object.tscn" id="1_7jck5"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Outline.gdshader" id="2_ktt8v"]
+[ext_resource type="PackedScene" uid="uid://gdkwtsj5s7jn" path="res://Scenes/Components/main_sprite.tscn" id="3_ks4f4"]
+[ext_resource type="Texture2D" uid="uid://rthajsko5jra" path="res://Resources/Sprites/World/Tree.png" id="4_g1o81"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dhkb7"]
+resource_local_to_scene = true
+shader = ExtResource("2_ktt8v")
+shader_parameter/line_colour = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2
+
+[node name="Tree" instance=ExtResource("1_7jck5")]
+unselectable = true
+
+[node name="OutlineCreator" parent="." index="0"]
+material = SubResource("ShaderMaterial_dhkb7")
+
+[node name="MainSprite" parent="VisualNode" index="0" node_paths=PackedStringArray("collision") instance=ExtResource("3_ks4f4")]
+position = Vector2(3, -93)
+texture = ExtResource("4_g1o81")
+collision = NodePath("../../Hurtbox/CollisionPolygon2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox" index="0"]

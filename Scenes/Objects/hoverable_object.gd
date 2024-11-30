@@ -3,18 +3,27 @@ extends Node2D
 class_name Hoverable
 
 
+@onready var hurtbox = $Hurtbox
+
 @onready var outline_creator = $OutlineCreator
 
 @onready var visual_node = $VisualNode
 
+
 @export var unselectable: bool = false
 @export var is_protect_target: bool = false
+@export var is_assassin: bool = false
+
 var is_marked: bool = false
 
 var is_ready: bool = false
 
+
+
+
 func _ready():
-	print("IMREADY")
+	
+	
 	if is_protect_target:
 		outline_creator.material.set_shader_parameter("line_colour", Color.GREEN)
 		outline_creator.visible = true
@@ -24,20 +33,21 @@ func _ready():
 	is_ready = true
 
 
-func _process(_delta):
-	#if Input.is_action_pressed("Left"):
-		#visual_node.position.x -=5
-	#elif Input.is_action_pressed("Right"):
-		#visual_node.position.x +=5
-	pass
-
-
 func _on_visual_node_child_entered_tree(node):
 	if not is_ready:
 		await ready
 	
 	if node is MainSprite:
 		copy_sprite_to_outline(node)
+		node.duplicated_sprite.visible = node.visible
+		
+		if node.collision == null:
+			var coll = CollisionPolygon2D.new()
+			hurtbox.add_child(coll)
+			node.collision = coll
+			node.generate_collision()
+		
+		node.collision.disabled = not node.visible
 
 
 func _on_visual_node_child_exiting_tree(node):

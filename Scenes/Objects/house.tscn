@@ -1,0 +1,189 @@
+[gd_scene load_steps=14 format=3 uid="uid://bvkyubarlmh24"]
+
+[ext_resource type="PackedScene" uid="uid://7xqv5tkp6cdu" path="res://Scenes/Objects/hoverable_object.tscn" id="1_mc87e"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Outline.gdshader" id="2_gvcbc"]
+[ext_resource type="PackedScene" uid="uid://gdkwtsj5s7jn" path="res://Scenes/Components/main_sprite.tscn" id="3_ihgv7"]
+[ext_resource type="Texture2D" uid="uid://bqf1mb8c7xc6b" path="res://Resources/Sprites/World/Wall1.png" id="4_btpu2"]
+[ext_resource type="Texture2D" uid="uid://dxp2wiuphh3rv" path="res://Resources/Sprites/World/Outline.png" id="4_n8x4g"]
+[ext_resource type="Texture2D" uid="uid://dohw7kn6fluul" path="res://Resources/Sprites/World/white.png" id="5_l4gci"]
+[ext_resource type="Script" path="res://Scenes/Components/main_sprite.gd" id="5_tjedl"]
+[ext_resource type="Texture2D" uid="uid://cwhyfumh65lc8" path="res://Resources/Sprites/World/Door.png" id="6_jnk2q"]
+[ext_resource type="Texture2D" uid="uid://bqrk3f7wp14r5" path="res://Resources/Sprites/World/Window2.png" id="7_yux8y"]
+[ext_resource type="Texture2D" uid="uid://63u3bwnfqbcx" path="res://Resources/Sprites/World/Roof1.png" id="8_6tndg"]
+[ext_resource type="Texture2D" uid="uid://dvkpc1gvxx0py" path="res://Resources/Sprites/World/Window1.png" id="9_3n5p3"]
+[ext_resource type="Texture2D" uid="uid://16c10xgm78j5" path="res://Resources/Sprites/World/Roof2.png" id="9_g68ac"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jx1d6"]
+resource_local_to_scene = true
+shader = ExtResource("2_gvcbc")
+shader_parameter/line_colour = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2
+
+[node name="House" instance=ExtResource("1_mc87e")]
+position = Vector2(-1, 0)
+unselectable = true
+
+[node name="OutlineCreator" parent="." index="0"]
+material = SubResource("ShaderMaterial_jx1d6")
+
+[node name="Polygon2D" type="Polygon2D" parent="OutlineCreator" index="0"]
+texture_repeat = 2
+position = Vector2(331, 64)
+texture = ExtResource("4_btpu2")
+polygon = PackedVector2Array(-298, -160, -298, -64, -234, -64, -234, -258, -331, -346, -302, -264, -302, -208, -358, -208, -358, -264, -302, -264, -331, -346, -426, -258, -426, -64, -362, -64, -362, -160)
+
+[node name="RoofTop" type="Polygon2D" parent="OutlineCreator" index="1"]
+color = Color(0.419608, 0.14902, 0.262745, 1)
+polygon = PackedVector2Array(-101, -190, 1, -292, 103, -190, 103, -310, 1, -412, -101, -310)
+
+[node name="RoofTop2" type="Polygon2D" parent="OutlineCreator" index="2"]
+color = Color(0.419608, 0.14902, 0.262745, 1)
+polygon = PackedVector2Array(-101, -190, 1, -292, 103, -190, 103, -310, 1, -412, -101, -310)
+
+[node name="MainSprite" parent="VisualNode" index="0" instance=ExtResource("3_ihgv7")]
+modulate = Color(0.172549, 0.117647, 0.192157, 1)
+position = Vector2(-102, -250)
+scale = Vector2(0.999999, 60)
+texture = ExtResource("5_l4gci")
+
+[node name="MainSprite2" parent="VisualNode" index="1" instance=ExtResource("3_ihgv7")]
+modulate = Color(0.172549, 0.117647, 0.192157, 1)
+position = Vector2(104, -250)
+scale = Vector2(0.999999, 60)
+texture = ExtResource("5_l4gci")
+
+[node name="RoofSprite11" parent="VisualNode" index="2" instance=ExtResource("3_ihgv7")]
+position = Vector2(-12, -399)
+texture = ExtResource("8_6tndg")
+
+[node name="RoofSprite12" parent="VisualNode" index="3" instance=ExtResource("3_ihgv7")]
+position = Vector2(-30, -381)
+texture = ExtResource("8_6tndg")
+
+[node name="RoofSprite13" parent="VisualNode" index="4" instance=ExtResource("3_ihgv7")]
+position = Vector2(-48, -363)
+texture = ExtResource("8_6tndg")
+
+[node name="RoofSprite14" parent="VisualNode" index="5" instance=ExtResource("3_ihgv7")]
+position = Vector2(-66, -345)
+texture = ExtResource("8_6tndg")
+
+[node name="RoofSprite15" parent="VisualNode" index="6" instance=ExtResource("3_ihgv7")]
+position = Vector2(-84, -327)
+texture = ExtResource("8_6tndg")
+
+[node name="RoofSprite16" parent="VisualNode" index="7" instance=ExtResource("3_ihgv7")]
+position = Vector2(-90, -321)
+texture = ExtResource("8_6tndg")
+
+[node name="MainSprite4" parent="VisualNode" index="8" instance=ExtResource("3_ihgv7")]
+position = Vector2(14, -399)
+texture = ExtResource("9_g68ac")
+
+[node name="RoofSprite17" parent="VisualNode" index="9" instance=ExtResource("3_ihgv7")]
+position = Vector2(32, -381)
+texture = ExtResource("9_g68ac")
+
+[node name="RoofSprite18" parent="VisualNode" index="10" instance=ExtResource("3_ihgv7")]
+position = Vector2(50, -363)
+texture = ExtResource("9_g68ac")
+
+[node name="RoofSprite19" parent="VisualNode" index="11" instance=ExtResource("3_ihgv7")]
+position = Vector2(68, -345)
+texture = ExtResource("9_g68ac")
+
+[node name="RoofSprite20" parent="VisualNode" index="12" instance=ExtResource("3_ihgv7")]
+position = Vector2(86, -327)
+texture = ExtResource("9_g68ac")
+
+[node name="RoofSprite21" parent="VisualNode" index="13" instance=ExtResource("3_ihgv7")]
+position = Vector2(92, -321)
+texture = ExtResource("9_g68ac")
+
+[node name="RoofTop" type="Polygon2D" parent="VisualNode" index="14"]
+color = Color(0.419608, 0.14902, 0.262745, 1)
+polygon = PackedVector2Array(-101, -190, 1, -292, 103, -190, 103, -310, 1, -412, -101, -310)
+
+[node name="Outline" type="Sprite2D" parent="VisualNode" index="15"]
+position = Vector2(-95, -92)
+scale = Vector2(2, 92)
+texture = ExtResource("4_n8x4g")
+script = ExtResource("5_tjedl")
+
+[node name="Outline2" type="Sprite2D" parent="VisualNode" index="16"]
+position = Vector2(97, -92)
+scale = Vector2(2, 92)
+texture = ExtResource("4_n8x4g")
+script = ExtResource("5_tjedl")
+
+[node name="Polygon2D" type="Polygon2D" parent="VisualNode" index="17"]
+texture_repeat = 2
+position = Vector2(331, 64)
+texture = ExtResource("4_btpu2")
+polygon = PackedVector2Array(-298, -160, -298, -64, -234, -64, -234, -256, -331, -346, -302, -264, -302, -208, -358, -208, -358, -264, -302, -264, -331, -346, -426, -258, -426, -64, -362, -64, -362, -160)
+
+[node name="DoorSprite" parent="VisualNode" index="18" instance=ExtResource("3_ihgv7")]
+position = Vector2(1, -48)
+texture = ExtResource("6_jnk2q")
+
+[node name="Sprite2D" type="Sprite2D" parent="VisualNode" index="19"]
+position = Vector2(1, -172)
+texture = ExtResource("7_yux8y")
+
+[node name="WindowSprite" parent="VisualNode" index="20" instance=ExtResource("3_ihgv7")]
+position = Vector2(1, -172)
+texture = ExtResource("9_3n5p3")
+
+[node name="RoofSprite0" parent="VisualNode" index="21" instance=ExtResource("3_ihgv7")]
+position = Vector2(-12, -277)
+texture = ExtResource("8_6tndg")
+
+[node name="RoofSprite1" parent="VisualNode" index="22" instance=ExtResource("3_ihgv7")]
+position = Vector2(-30, -259)
+texture = ExtResource("8_6tndg")
+
+[node name="RoofSprite2" parent="VisualNode" index="23" instance=ExtResource("3_ihgv7")]
+position = Vector2(-48, -241)
+texture = ExtResource("8_6tndg")
+
+[node name="RoofSprite3" parent="VisualNode" index="24" instance=ExtResource("3_ihgv7")]
+position = Vector2(-66, -223)
+texture = ExtResource("8_6tndg")
+
+[node name="RoofSprite4" parent="VisualNode" index="25" instance=ExtResource("3_ihgv7")]
+position = Vector2(-84, -205)
+texture = ExtResource("8_6tndg")
+
+[node name="RoofSprite9" parent="VisualNode" index="26" instance=ExtResource("3_ihgv7")]
+position = Vector2(-90, -199)
+texture = ExtResource("8_6tndg")
+
+[node name="MainSprite3" parent="VisualNode" index="27" instance=ExtResource("3_ihgv7")]
+position = Vector2(14, -277)
+texture = ExtResource("9_g68ac")
+
+[node name="RoofSprite5" parent="VisualNode" index="28" instance=ExtResource("3_ihgv7")]
+position = Vector2(32, -259)
+texture = ExtResource("9_g68ac")
+
+[node name="RoofSprite6" parent="VisualNode" index="29" instance=ExtResource("3_ihgv7")]
+position = Vector2(50, -241)
+texture = ExtResource("9_g68ac")
+
+[node name="RoofSprite7" parent="VisualNode" index="30" instance=ExtResource("3_ihgv7")]
+position = Vector2(68, -223)
+texture = ExtResource("9_g68ac")
+
+[node name="RoofSprite8" parent="VisualNode" index="31" instance=ExtResource("3_ihgv7")]
+position = Vector2(86, -205)
+texture = ExtResource("9_g68ac")
+
+[node name="RoofSprite10" parent="VisualNode" index="32" instance=ExtResource("3_ihgv7")]
+position = Vector2(92, -199)
+texture = ExtResource("9_g68ac")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox" index="0"]
+polygon = PackedVector2Array(1, -285, -95, -184, -95, 0, -31, 0, -31, -96, 33, -96, 33, 0, 97, 0, 97, -184, 1, -285, 29, -200, 29, -144, -27, -144, -27, -200, 29, -200)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Hurtbox" index="1"]
+polygon = PackedVector2Array(-101, -188, -101, -310, 1, -410, 103, -310, 103, -188, 1, -289)

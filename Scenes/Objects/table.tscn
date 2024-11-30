@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://n1bu2823fu0n"]
+
+[ext_resource type="PackedScene" uid="uid://7xqv5tkp6cdu" path="res://Scenes/Objects/hoverable_object.tscn" id="1_4rv64"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Outline.gdshader" id="2_oueh5"]
+[ext_resource type="PackedScene" uid="uid://gdkwtsj5s7jn" path="res://Scenes/Components/main_sprite.tscn" id="3_l57ux"]
+[ext_resource type="Texture2D" uid="uid://nbv46vtv0jpy" path="res://Resources/Sprites/World/Table.png" id="4_2sgem"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t0vna"]
+resource_local_to_scene = true
+shader = ExtResource("2_oueh5")
+shader_parameter/line_colour = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2
+
+[node name="Table" instance=ExtResource("1_4rv64")]
+unselectable = true
+
+[node name="OutlineCreator" parent="." index="0"]
+material = SubResource("ShaderMaterial_t0vna")
+
+[node name="MainSprite" parent="VisualNode" index="0" instance=ExtResource("3_l57ux")]
+position = Vector2(0, -26)
+texture = ExtResource("4_2sgem")

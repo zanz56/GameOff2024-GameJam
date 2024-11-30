@@ -5,35 +5,55 @@ class_name MainSprite
 @export var collision: CollisionPolygon2D
 
 var sprite_size: Vector2
+var is_ready: bool = false
 
 func _ready():
 	calculate_sprite_size()
 	
-	generate_collision()
+	await generate_collision()
+	
+	is_ready = true
+	
+	
 
 func _process(_delta):
 	if duplicated_sprite != null:
 		duplicated_sprite.global_position = global_position
+		duplicated_sprite.flip_h = flip_h
+		duplicated_sprite.flip_v = flip_v
+		duplicated_sprite.scale = scale
+		duplicated_sprite.rotation = rotation
+	
+	if collision != null:
+		collision.position = position - (sprite_size/2)
 	
 	if Input.is_action_just_pressed("Right"):
 		frame = (frame + 1) % 32
 
 func _on_frame_changed():
+	if not is_ready:
+		await ready
 	if duplicated_sprite != null:
 		duplicated_sprite.frame = frame
 	generate_collision()
 
 func _on_texture_changed():
+	if not is_ready:
+		await ready
 	if duplicated_sprite != null:
 		duplicated_sprite.texture = texture
 	generate_collision()
 
 func _on_visibility_changed():
+	if not is_ready:
+		await ready
 	if duplicated_sprite != null:
 		if visible:
 			duplicated_sprite.visible = true
+			collision.disabled = false
 		else:
 			duplicated_sprite.visible = false
+			collision.disabled = true
 
 func generate_collision():
 	
@@ -52,6 +72,7 @@ func generate_collision():
 		)
 		collision.position = position - (sprite_size/2)
 		collision.polygon = polys[0]
+		
 		#print(polys[0])
 
 func calculate_sprite_size():
@@ -60,6 +81,6 @@ func calculate_sprite_size():
 	sprite_size_t.x = sprite_size_t.x / hframes
 	sprite_size_t.y = sprite_size_t.y / vframes
 	
-	print(sprite_size_t)
+	#print(sprite_size_t)
 	
 	sprite_size = sprite_size_t

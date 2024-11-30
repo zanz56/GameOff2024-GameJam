@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy4nddgeefl0h"]
+
+[ext_resource type="PackedScene" uid="uid://ce50kjh8ce3yg" path="res://Scenes/Objects/Figures/base_figure.tscn" id="1_0hciy"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Outline.gdshader" id="2_d586k"]
+[ext_resource type="Texture2D" uid="uid://c615vljculmjv" path="res://Resources/Sprites/Characters/Figure/BigFigureHead.png" id="3_wb3l2"]
+[ext_resource type="Texture2D" uid="uid://c6jhvfkjbqvro" path="res://Resources/Sprites/Characters/Figure/BigFigureBW.png" id="4_oidne"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0mjux"]
+resource_local_to_scene = true
+shader = ExtResource("2_d586k")
+shader_parameter/line_colour = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2
+
+[node name="BigFigure" instance=ExtResource("1_0hciy")]
+HatHeight = -56
+
+[node name="OutlineCreator" parent="." index="0"]
+material = SubResource("ShaderMaterial_0mjux")
+
+[node name="HeadSprite" parent="VisualNode" index="0"]
+position = Vector2(0, -32)
+texture = ExtResource("3_wb3l2")
+
+[node name="CoatSprite" parent="VisualNode" index="1"]
+position = Vector2(0, -32)
+texture = ExtResource("4_oidne")
+
+[node name="HatSprite" parent="VisualNode" index="2"]
+position = Vector2(0, -56)

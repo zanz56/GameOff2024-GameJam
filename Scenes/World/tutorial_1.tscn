@@ -1,0 +1,441 @@
+[gd_scene load_steps=21 format=3 uid="uid://b3mcjvckcwcqy"]
+
+[ext_resource type="PackedScene" uid="uid://dk8plt5xrpauo" path="res://Scenes/World/test_world.tscn" id="1_kvahs"]
+[ext_resource type="Script" path="res://Scenes/World/tutorial_1.gd" id="2_7yoar"]
+[ext_resource type="Texture2D" uid="uid://emllt5c0b6yy" path="res://Resources/Sprites/World/GrassTile.png" id="2_vt1c1"]
+[ext_resource type="Texture2D" uid="uid://c4m3j8om8har6" path="res://Resources/Sprites/World/StoneTile-export.png" id="3_6qf57"]
+[ext_resource type="Texture2D" uid="uid://cp30gou80pmgw" path="res://Resources/Sprites/World/TileSide.png" id="4_13go1"]
+[ext_resource type="PackedScene" uid="uid://drvqex8kejrtf" path="res://Scenes/Objects/tree.tscn" id="5_mw220"]
+[ext_resource type="PackedScene" uid="uid://fbcqj8ds8aa2" path="res://Scenes/Objects/bush.tscn" id="6_af7rb"]
+[ext_resource type="PackedScene" uid="uid://dy4nddgeefl0h" path="res://Scenes/Objects/Figures/big_figure.tscn" id="7_uvkyg"]
+[ext_resource type="PackedScene" uid="uid://ce50kjh8ce3yg" path="res://Scenes/Objects/Figures/base_figure.tscn" id="8_fjcq7"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Outline.gdshader" id="9_3tui4"]
+[ext_resource type="PackedScene" uid="uid://gdkwtsj5s7jn" path="res://Scenes/Components/main_sprite.tscn" id="10_6614u"]
+[ext_resource type="Texture2D" uid="uid://dgfg7ediygoho" path="res://Resources/Sprites/HeldItems/Knife.png" id="11_0trso"]
+[ext_resource type="Texture2D" uid="uid://b8ehphkjs1iwr" path="res://Resources/Sprites/UI/Menus/MenuPanel.png" id="12_mg3vg"]
+[ext_resource type="Theme" uid="uid://w073xaxkj70j" path="res://Themes/menu_theme.tres" id="13_rtk5r"]
+[ext_resource type="FontFile" uid="uid://be2dhr8by1dtr" path="res://Resources/Fonts/Not Jam Glasgow 16.ttf" id="14_ugnpa"]
+[ext_resource type="PackedScene" uid="uid://chvldwh2dohef" path="res://Scenes/Menus/MenuComponents/menu_button.tscn" id="15_rnmld"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ofb0f"]
+resource_local_to_scene = true
+shader = ExtResource("9_3tui4")
+shader_parameter/line_colour = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2
+
+[sub_resource type="Animation" id="Animation_0fipj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Figures/BigFigure:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-408, 34)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Figures/BigFigure:curr_dir")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Figures/BigFigure:walk_frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Figures/BaseFigure:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(494, 26)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Figures/BaseFigure:curr_dir")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Figures/BaseFigure:walk_frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Figures/BaseFigure/VisualNode/KnifeSprite:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Figures/BaseFigure/VisualNode/KnifeSprite:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(26.4218, -38)]
+}
+
+[sub_resource type="Animation" id="Animation_plev1"]
+resource_name = "Video"
+length = 13.0
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Figures/BigFigure:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 13),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-408, 34), Vector2(380, 34)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Figures/BigFigure:curr_dir")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Figures/BigFigure:walk_frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667, 3.25, 3.33333, 3.41667, 3.5, 3.58333, 3.66667, 3.75, 3.83333, 3.91667, 4, 4.08333, 4.16667, 4.25, 4.33333, 4.41667, 4.5, 4.58333, 4.66667, 4.75, 4.83333, 4.91667, 5, 5.08333, 5.16667, 5.25, 5.33333, 5.41667, 5.5, 5.58333, 5.66667, 5.75, 5.83333, 5.91667, 6, 6.08333, 6.16667, 6.25, 6.33333, 6.41667, 6.5, 6.58333, 6.66667, 6.75, 6.83333, 6.91667, 7, 7.08333, 7.16667, 7.25, 7.33333, 7.41667, 7.5, 7.58333, 7.66667, 7.75, 7.83333, 7.91667, 8, 8.08333, 8.16667, 8.25, 8.33333, 8.41667, 8.5, 8.58333, 8.66667, 8.75, 8.83333, 8.91667, 9, 9.08333, 9.16667, 9.25, 9.33333, 9.41667, 9.5, 9.58333, 9.66667, 9.75, 9.83333, 9.91667, 10, 10.0833, 10.1667, 10.25, 10.3333, 10.4167, 10.5, 10.5833, 10.6667, 10.75, 10.8333, 10.9167, 11, 11.0833, 11.1667, 11.25, 11.3333, 11.4167, 11.5, 11.5833, 11.6667, 11.75, 11.8333, 11.9167, 12, 12.0833, 12.1667, 12.25, 12.3333, 12.4167, 12.5, 12.5833, 12.6667, 12.75, 12.8333, 12.9167, 13, 13.0833, 13.1667, 13.25, 13.3333, 13.4167, 13.5, 13.5833, 13.6667, 13.75, 13.8333, 13.9167, 14, 14.0833, 14.1667, 14.25, 14.3333, 14.4167, 14.5, 14.5833, 14.6667, 14.75, 14.8333, 14.9167, 15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Figures/BaseFigure:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3, 8.5, 11.4167, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(496, 8), Vector2(496, 8), Vector2(80, 8), Vector2(80, 8), Vector2(310, 8)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Figures/BaseFigure:curr_dir")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 9.08333, 9.16667, 10.6667, 10.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 2, 1, 1, 3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Figures/BaseFigure:walk_frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667, 1.5, 1.58333, 1.66667, 1.75, 1.83333, 1.91667, 2, 2.08333, 2.16667, 2.25, 2.33333, 2.41667, 2.5, 2.58333, 2.66667, 2.75, 2.83333, 2.91667, 3, 3.08333, 3.16667, 3.25, 3.33333, 3.41667, 3.5, 3.58333, 3.66667, 3.75, 3.83333, 3.91667, 4, 4.08333, 4.16667, 4.25, 4.33333, 4.41667, 4.5, 4.58333, 4.66667, 4.75, 4.83333, 4.91667, 5, 5.08333, 5.16667, 5.25, 5.33333, 5.41667, 5.5, 5.58333, 5.66667, 5.75, 5.83333, 5.91667, 6, 6.08333, 6.16667, 6.25, 6.33333, 6.41667, 6.5, 6.58333, 6.66667, 6.75, 6.83333, 6.91667, 7, 7.08333, 7.16667, 7.25, 7.33333, 7.41667, 7.5, 7.58333, 7.66667, 7.75, 7.83333, 7.91667, 8, 8.08333, 8.16667, 8.25, 8.33333, 8.41667, 8.5, 9.08333, 9.16667, 10.6667, 10.75, 11.4167, 11.5, 11.5833, 11.6667, 11.75, 11.8333, 11.9167, 12, 12.0833, 12.1667, 12.25, 12.3333, 12.4167, 12.5, 12.5833, 12.6667, 12.75, 12.8333, 12.9167, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 0, 0, 0, 0, 0, 2, 4, 0, 2, 4, 0, 2, 4, 0, 2, 4, 0, 2, 4, 0, 2, 4, 0, 2]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Figures/BaseFigure/VisualNode/KnifeSprite:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 10.1667, 10.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Figures/BaseFigure/VisualNode/KnifeSprite:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 11.4167, 11.5, 11.5833, 11.6667, 11.75, 11.8333, 11.9167, 12, 12.0833, 12.1667, 12.25, 12.3333, 12.4167, 12.5, 12.5833, 12.6667, 12.75, 12.8333, 12.9167, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(26.4218, -38), Vector2(26.4218, -38), Vector2(26.4218, -38), Vector2(26.422, -36), Vector2(26.4218, -38), Vector2(26.4218, -38), Vector2(26.422, -36), Vector2(26.4218, -38), Vector2(26.4218, -38), Vector2(26.422, -36), Vector2(26.4218, -38), Vector2(26.4218, -38), Vector2(26.422, -36), Vector2(26.4218, -38), Vector2(26.4218, -38), Vector2(26.422, -36), Vector2(26.4218, -38), Vector2(26.4218, -38), Vector2(26.422, -36), Vector2(26.4218, -38), Vector2(26.4218, -38)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_705au"]
+_data = {
+"RESET": SubResource("Animation_0fipj"),
+"Video": SubResource("Animation_plev1")
+}
+
+[node name="Tutorial1" node_paths=PackedStringArray("video_player") instance=ExtResource("1_kvahs")]
+script = ExtResource("2_7yoar")
+progression_amount = 1
+own_path = "res://Scenes/World/tutorial_1.tscn"
+video_player = NodePath("AnimationPlayer")
+
+[node name="TextureRect" type="TextureRect" parent="Background" index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 972.0
+offset_bottom = 554.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vt1c1")
+stretch_mode = 1
+
+[node name="Tiles" type="TextureRect" parent="Background" index="1"]
+offset_left = -16.0
+offset_top = 268.0
+offset_right = 972.0
+offset_bottom = 316.0
+texture = ExtResource("3_6qf57")
+stretch_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="Background/Tiles" index="0"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 988.0
+offset_bottom = 50.0
+color = Color(0.431373, 0.298039, 0.188235, 1)
+
+[node name="TextureRect3" type="TextureRect" parent="Background" index="2"]
+visible = false
+offset_left = -9.0
+offset_top = 315.0
+offset_right = 969.0
+offset_bottom = 321.0
+texture = ExtResource("4_13go1")
+stretch_mode = 1
+
+[node name="Tree" parent="Figures" index="0" instance=ExtResource("5_mw220")]
+position = Vector2(-266, -62)
+
+[node name="Tree4" parent="Figures" index="1" instance=ExtResource("5_mw220")]
+position = Vector2(-54, -140)
+
+[node name="Tree5" parent="Figures" index="2" instance=ExtResource("5_mw220")]
+position = Vector2(64, 142)
+
+[node name="Tree2" parent="Figures" index="3" instance=ExtResource("5_mw220")]
+position = Vector2(-153, 113)
+
+[node name="Tree3" parent="Figures" index="4" instance=ExtResource("5_mw220")]
+position = Vector2(216, -94)
+
+[node name="Bush" parent="Figures" index="5" instance=ExtResource("6_af7rb")]
+position = Vector2(422, -24)
+
+[node name="Bush4" parent="Figures" index="6" instance=ExtResource("6_af7rb")]
+position = Vector2(162, -58)
+
+[node name="Bush5" parent="Figures" index="7" instance=ExtResource("6_af7rb")]
+position = Vector2(271, -31)
+
+[node name="Bush6" parent="Figures" index="8" instance=ExtResource("6_af7rb")]
+position = Vector2(54, -103)
+
+[node name="Bush7" parent="Figures" index="9" instance=ExtResource("6_af7rb")]
+position = Vector2(-10, -71)
+
+[node name="Bush8" parent="Figures" index="10" instance=ExtResource("6_af7rb")]
+position = Vector2(-198, -82)
+
+[node name="Bush2" parent="Figures" index="11" instance=ExtResource("6_af7rb")]
+position = Vector2(-30, 158)
+
+[node name="Bush9" parent="Figures" index="12" instance=ExtResource("6_af7rb")]
+position = Vector2(144, 76)
+
+[node name="Bush12" parent="Figures" index="13" instance=ExtResource("6_af7rb")]
+position = Vector2(354, 140)
+
+[node name="Bush13" parent="Figures" index="14" instance=ExtResource("6_af7rb")]
+position = Vector2(400, 132)
+
+[node name="Bush10" parent="Figures" index="15" instance=ExtResource("6_af7rb")]
+position = Vector2(-268, 116)
+
+[node name="Bush11" parent="Figures" index="16" instance=ExtResource("6_af7rb")]
+position = Vector2(-116, 133)
+
+[node name="Bush3" parent="Figures" index="17" instance=ExtResource("6_af7rb")]
+position = Vector2(-304, -40)
+
+[node name="BigFigure" parent="Figures" index="18" instance=ExtResource("7_uvkyg")]
+position = Vector2(-408, 34)
+Hat_Color = Color(0.870588, 0.364706, 0.227451, 1)
+Coat_Color = Color(0.870588, 0.364706, 0.227451, 1)
+is_protect_target = true
+
+[node name="BaseFigure" parent="Figures" index="19" instance=ExtResource("8_fjcq7")]
+position = Vector2(494, 26)
+Hat_Color = Color(0.2, 0.533333, 0.870588, 1)
+Coat_Color = Color(0.2, 0.533333, 0.870588, 1)
+is_assassin = true
+
+[node name="OutlineCreator" parent="Figures/BaseFigure" index="0"]
+material = SubResource("ShaderMaterial_ofb0f")
+
+[node name="KnifeSprite" parent="Figures/BaseFigure/VisualNode" index="3" node_paths=PackedStringArray("collision") instance=ExtResource("10_6614u")]
+visible = false
+position = Vector2(26.4218, -38)
+texture = ExtResource("11_0trso")
+flip_h = true
+collision = NodePath("../../Hurtbox/HoldColl")
+
+[node name="ColorRect" parent="." index="3"]
+metadata/_edit_lock_ = true
+
+[node name="Timer" parent="." index="4"]
+wait_time = 0.5
+autostart = false
+
+[node name="TimeLimit" parent="." index="5"]
+wait_time = 30.0
+
+[node name="Tutorial" type="NinePatchRect" parent="UI" index="1"]
+offset_left = 100.0
+offset_top = 4.0
+offset_right = 956.0
+offset_bottom = 478.0
+texture = ExtResource("12_mg3vg")
+patch_margin_left = 44
+patch_margin_top = 32
+patch_margin_right = 40
+patch_margin_bottom = 32
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Tutorial" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Tutorial/MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Tutorial/MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+theme = ExtResource("13_rtk5r")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Tutorial"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Tutorial/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("14_ugnpa")
+theme_override_font_sizes/normal_font_size = 32
+text = "You will be shown the moments before someone is about to be assassinated. That person is marked with a green outline.
+
+Use the video player slider and buttons to review the footage. The yellow bar on the left is your time limit.
+
+Figure out who the killer is and then push the red button and select them. Correct guess saves the life of the assassination target."
+
+[node name="TutorialClose" parent="UI/Tutorial/MarginContainer/VBoxContainer" index="2" instance=ExtResource("15_rnmld")]
+z_index = 1
+layout_mode = 2
+text = "Start"
+
+[node name="ColorRect" type="ColorRect" parent="UI/Tutorial/MarginContainer/VBoxContainer/TutorialClose" index="0"]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = 8.0
+offset_right = 98.0
+offset_bottom = 68.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="UI/Tutorial/MarginContainer/VBoxContainer/TutorialClose" index="1"]
+z_index = -1
+layout_mode = 0
+offset_top = 6.0
+offset_right = 96.0
+offset_bottom = 70.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
+libraries = {
+"": SubResource("AnimationLibrary_705au")
+}
+autoplay = "RESET"
+
+[connection signal="pressed" from="UI/Tutorial/MarginContainer/VBoxContainer/TutorialClose" to="." method="_on_tutorial_close_pressed"]
+
+[editable path="Figures/BaseFigure"]
