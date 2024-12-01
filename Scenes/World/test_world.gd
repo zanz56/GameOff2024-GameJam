@@ -31,8 +31,19 @@ class_name BaseLevel
 
 @onready var level_end = $LevelEnd
 
+
+const LOW_TIME_PROGRESS_BAR = preload("res://Resources/Sprites/UI/Player/LowTimeProgressBar.png")
+
+#SFX
+@onready var play_pause = $PlayPause
+
+
 var playing: bool = true:
 	set(value):
+		
+		if playing != value:
+			play_pause.play()
+		
 		playing = value
 		
 		if not readied:
@@ -48,6 +59,8 @@ var playing: bool = true:
 			pause_button.disabled = true
 
 var readied: bool = false
+
+var time_low: bool = false
 
 var hovered: HurtBox
 
@@ -80,6 +93,8 @@ var choosing:bool = false:
 			tween.tween_property(texture_rect, "modulate", Color.WHITE, 0.5)
 		choosing = value
 
+var slider_amount:float = 0
+
 func _ready():
 	get_viewport().physics_object_picking_sort = true
 	get_viewport().physics_object_picking_first_only = true
@@ -87,8 +102,10 @@ func _ready():
 	if video_player != null:
 		video_player.play("Video")
 		video_player.pause()
+	
+	GlobalMusic.change_music_to("Base Music")
+	
 	readied = true
-
 
 func _process(_delta):
 	handle_time()
@@ -102,6 +119,11 @@ func _process(_delta):
 func handle_time():
 	if not time_limit.is_stopped():
 		time_progress_bar.value = (time_limit.time_left / time_limit.wait_time) * 170
+		
+		if time_limit.time_left < 15 and not time_low:
+			time_low = true
+			GlobalMusic.change_music_to("Urgent")
+			$UI/AnimationPlayer.play("LowTime")
 
 func handle_esc():
 	if Input.is_action_just_pressed("Esc"):
@@ -178,7 +200,7 @@ func handle_click():
 					if progression_amount > Globals.progression:
 						Globals.progression = progression_amount
 						#SAVE
-						#Globals.save_data()
+						Globals.save_data()
 					
 					end_level(true)
 				else:
@@ -214,6 +236,10 @@ func _on_timer_timeout():
 
 func _on_video_slider_value_changed(value):
 	if not playing:
+		if abs(slider_amount - value) > 8:
+			slider_amount = value
+			$SliderTick.pitch_scale = randf_range(0.8, 1)
+			$SliderTick.play()
 		var percent = value/100
 		video_player.seek(video_player.current_animation_length * percent, true)
 
@@ -255,6 +281,7 @@ func _on_choice_button_pressed():
 		choosing = false
 		target_cursor.visible = false
 	else:
+		$ChoiceButtonSound.play()
 		choosing = true
 		target_cursor.visible = true
 
@@ -279,3 +306,8 @@ func _on_level_end_level_select():
 
 func _on_level_end_restart():
 	GlobalTransitions.transition_to(own_path)
+
+
+func _on_quit_button_pressed():
+	get_tree().paused = false
+	GlobalTransitions.transition_to("res://Scenes/Menus/level_select.tscn")

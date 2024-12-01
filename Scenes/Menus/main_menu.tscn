@@ -137,6 +137,7 @@ offset_top = 446.0
 offset_right = 346.0
 offset_bottom = 514.0
 text = "Quit"
+plays_sound = false
 
 [node name="CreditsButton" parent="." instance=ExtResource("2_px8yb")]
 layout_mode = 0

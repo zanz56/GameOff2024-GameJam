@@ -11,12 +11,10 @@ const LEVEL_SELECT = "res://Scenes/Menus/level_select.tscn"
 
 func _ready():
 	if OS.has_feature("web"):
-		quit_button.visible = false
-		quit_color_rect.visible = false
-		quit_color_rect2.visible = false
+		quit_button.disabled = true
 	
 	#LOAD
-	#Globals.load_data()
+	Globals.load_data()
 
 func _on_quit_button_pressed():
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)

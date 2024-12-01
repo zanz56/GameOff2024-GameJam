@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dk8plt5xrpauo"]
+[gd_scene load_steps=34 format=3 uid="uid://dk8plt5xrpauo"]
 
 [ext_resource type="Script" path="res://Scenes/World/test_world.gd" id="1_e1uw3"]
 [ext_resource type="Texture2D" uid="uid://d1uh30r0tqe6j" path="res://Resources/Sprites/UI/Player/PlayerMenu.png" id="5_a7fta"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://fljawoe4f4md" path="res://Resources/Sprites/UI/Player/ChoiceButton1.png" id="11_a0gcq"]
 [ext_resource type="Texture2D" uid="uid://r8kt3dyrismh" path="res://Resources/Sprites/UI/Player/ChoiceButton2.png" id="12_20kb3"]
 [ext_resource type="Texture2D" uid="uid://ctwi3j4g7j04u" path="res://Resources/Sprites/UI/Player/TimeProgressBarShort1.png" id="13_6l1dy"]
+[ext_resource type="Texture2D" uid="uid://bdrny4g63w53j" path="res://Resources/Sprites/UI/Player/LowTimeProgressBar.png" id="14_14f05"]
 [ext_resource type="Texture2D" uid="uid://c73wjm3wnjkbs" path="res://Resources/Sprites/UI/Player/TimeProgressBarShort2.png" id="14_d5mao"]
 [ext_resource type="Texture2D" uid="uid://b8ehphkjs1iwr" path="res://Resources/Sprites/UI/Menus/MenuPanel.png" id="17_e3x7i"]
 [ext_resource type="Theme" uid="uid://w073xaxkj70j" path="res://Themes/menu_theme.tres" id="18_sogju"]
@@ -23,12 +24,52 @@
 [ext_resource type="PackedScene" uid="uid://cq244cu7oma5j" path="res://Scenes/Menus/options_menu.tscn" id="23_v0dc1"]
 [ext_resource type="Texture2D" uid="uid://ctfa41gwrivcm" path="res://Resources/Sprites/UI/Player/TargetCursor/TargetCursor4.png" id="23_yqkkn"]
 [ext_resource type="Texture2D" uid="uid://djbgq73wquvrs" path="res://Resources/Sprites/UI/Player/TargetCursor/TargetCursor5.png" id="24_q416p"]
+[ext_resource type="AudioStream" uid="uid://chm7qnrjfj2fn" path="res://Resources/Sounds/SFX/PlayPause.wav" id="25_0qrxv"]
 [ext_resource type="Texture2D" uid="uid://cu63gvjdxn6s" path="res://Resources/Sprites/UI/Player/TargetCursor/TargetCursor6.png" id="25_ifgjs"]
+[ext_resource type="AudioStream" uid="uid://s5gehd3kqx6g" path="res://Resources/Sounds/SFX/SliderTIck.wav" id="26_gkdlk"]
+[ext_resource type="AudioStream" uid="uid://rddt3b8v74ph" path="res://Resources/Sounds/SFX/RedButton.wav" id="27_5do48"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0t2sh"]
 texture = ExtResource("13_6l1dy")
 axis_stretch_vertical = 1
 region_rect = Rect2(0, 0, 14, 4)
+
+[sub_resource type="Animation" id="Animation_p28cs"]
+resource_name = "LowTime"
+length = 0.0333367
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%TimeProgressBar:theme_override_styles/fill:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("14_14f05")]
+}
+
+[sub_resource type="Animation" id="Animation_a5qjs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%TimeProgressBar:theme_override_styles/fill:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_6l1dy")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m58ge"]
+_data = {
+"LowTime": SubResource("Animation_p28cs"),
+"RESET": SubResource("Animation_a5qjs")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mm8ex"]
 animations = [{
@@ -188,6 +229,12 @@ region_rect = Rect2(0, 0, 14, 4)
 patch_margin_top = 2
 patch_margin_bottom = 2
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_m58ge")
+}
+autoplay = "RESET"
+
 [node name="PauseScreen" type="CanvasLayer" parent="."]
 process_mode = 2
 visible = false
@@ -332,6 +379,18 @@ sprite_frames = SubResource("SpriteFrames_mm8ex")
 autoplay = "default"
 frame_progress = 0.845748
 
+[node name="PlayPause" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_0qrxv")
+bus = &"SFX"
+
+[node name="SliderTick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_gkdlk")
+bus = &"SFX"
+
+[node name="ChoiceButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_5do48")
+bus = &"SFX"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="TimeLimit" to="." method="_on_time_limit_timeout"]
 [connection signal="pressed" from="UI/TextureRect/CenterContainer/GearButton" to="." method="_on_gear_button_pressed"]
@@ -343,5 +402,6 @@ frame_progress = 0.845748
 [connection signal="pressed" from="UI/TextureRect/ChoiceButton" to="." method="_on_choice_button_pressed"]
 [connection signal="pressed" from="PauseScreen/ColorRect/NinePatchRect/MarginContainer/VBoxContainer/MarginContainer/CenterContainer/GridContainer/Unpause Button" to="." method="_on_unpause_button_pressed"]
 [connection signal="pressed" from="PauseScreen/ColorRect/NinePatchRect/MarginContainer/VBoxContainer/MarginContainer/CenterContainer/GridContainer/Options Button" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="PauseScreen/ColorRect/NinePatchRect/MarginContainer/VBoxContainer/MarginContainer/CenterContainer/GridContainer/Quit Button" to="." method="_on_quit_button_pressed"]
 [connection signal="LevelSelect" from="LevelEnd" to="." method="_on_level_end_level_select"]
 [connection signal="Restart" from="LevelEnd" to="." method="_on_level_end_restart"]

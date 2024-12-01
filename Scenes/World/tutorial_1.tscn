@@ -356,7 +356,7 @@ wait_time = 0.5
 autostart = false
 
 [node name="TimeLimit" parent="." index="5"]
-wait_time = 30.0
+wait_time = 45.0
 
 [node name="Tutorial" type="NinePatchRect" parent="UI" index="1"]
 offset_left = 100.0

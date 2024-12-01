@@ -21,6 +21,8 @@ func _ready():
 		tutorial_level_button_2.disabled = true
 		pass
 	
+	GlobalMusic.change_music_to("Base Music")
+	
 	GlobalTransitions.unfade()
 
 

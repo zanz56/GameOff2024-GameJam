@@ -391,7 +391,7 @@ metadata/_edit_lock_ = true
 autostart = false
 
 [node name="TimeLimit" parent="." index="5"]
-wait_time = 60.0
+wait_time = 90.0
 
 [node name="Tutorial" type="NinePatchRect" parent="UI" index="1"]
 offset_left = 100.0

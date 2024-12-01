@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://chnhxbjuxghoa"]
+
+[ext_resource type="Script" path="res://Globals/global_music.gd" id="1_37alb"]
+[ext_resource type="AudioStream" uid="uid://d016vy8djnrhu" path="res://Resources/Sounds/Music/Urgent.wav" id="1_ljbr7"]
+[ext_resource type="AudioStream" uid="uid://dp7ldf66j4jfm" path="res://Resources/Sounds/Music/baseM.wav" id="2_w56dg"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_ed4rm"]
+clip_count = 2
+clip_0/name = &"Base Music"
+clip_0/stream = ExtResource("2_w56dg")
+clip_0/auto_advance = 0
+clip_1/name = &"Urgent"
+clip_1/stream = ExtResource("1_ljbr7")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1,
+"fade_mode": 2,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(1, 0): {
+"fade_beats": 1,
+"fade_mode": 3,
+"from_time": 1,
+"to_time": 1
+}
+}
+
+[node name="GlobalMusic" type="Node"]
+script = ExtResource("1_37alb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_ed4rm")
+autoplay = true
+bus = &"Music"
+
+[node name="MusicStartTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="MusicStartTimer" to="." method="_on_music_start_timer_timeout"]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfwpcorv33egi"]
+[gd_scene load_steps=14 format=3 uid="uid://dfwpcorv33egi"]
 
 [ext_resource type="Script" path="res://Scenes/Menus/level_end.gd" id="1_jo460"]
 [ext_resource type="Theme" uid="uid://w073xaxkj70j" path="res://Themes/menu_theme.tres" id="2_7dseu"]
 [ext_resource type="PackedScene" uid="uid://chvldwh2dohef" path="res://Scenes/Menus/MenuComponents/menu_button.tscn" id="3_1i143"]
+[ext_resource type="AudioStream" uid="uid://cutqaxyi8i7tb" path="res://Resources/Sounds/SFX/Elipsis.wav" id="4_3cmh1"]
+[ext_resource type="AudioStream" uid="uid://biars4ciarjli" path="res://Resources/Sounds/SFX/Success.wav" id="5_b5jq6"]
+[ext_resource type="AudioStream" uid="uid://bhhpkgrllbyam" path="res://Resources/Sounds/SFX/Fail.wav" id="6_tra6i"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w6qy3"]
 
@@ -120,7 +123,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0, 7.5, 7.58333, 7.66667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [null, 64, 48, 32]
+"values": [null, 128, 96, 64]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -157,6 +160,44 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("ElipsisAudio:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(3.08333, 4.08333, 5.08333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Success:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 7.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/14/type = "method"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath(".")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"music_fade"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_xs8uh"]
@@ -281,7 +322,7 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0, 7.5, 7.58333, 7.66667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [null, 64, 48, 32]
+"values": [null, 128, 96, 64]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -318,6 +359,44 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("ElipsisAudio:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(3.08333, 4.08333, 5.08333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Fail:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(7.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "method"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath(".")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"music_fade"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_m3vic"]
@@ -478,6 +557,42 @@ tracks/12/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("ElipsisAudio:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Success:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Fail:playing")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w7804"]
 _data = {
@@ -576,6 +691,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_w6qy3")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_jpt7n")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_lui41")
 text = "Restart"
+plays_sound = false
 
 [node name="LSelectButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_1i143")]
 layout_mode = 2
@@ -583,6 +699,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_w6qy3")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_jpt7n")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_lui41")
 text = "Level Select"
+plays_sound = false
 
 [node name="ContinueButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_1i143")]
 layout_mode = 2
@@ -590,11 +707,24 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_w6qy3")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_jpt7n")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_lui41")
 text = "Continue"
+plays_sound = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_w7804")
 }
+
+[node name="ElipsisAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3cmh1")
+bus = &"SFX"
+
+[node name="Success" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_b5jq6")
+bus = &"SFX"
+
+[node name="Fail" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tra6i")
+bus = &"SFX"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/LSelectButton" to="." method="_on_l_select_button_pressed"]

@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 
 GlobalTransitions="*res://Globals/global_transitions.tscn"
 Globals="*res://Globals/Globals.gd"
+GlobalMusic="*res://Globals/global_music.tscn"
 
 [display]
 

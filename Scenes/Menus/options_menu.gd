@@ -5,7 +5,12 @@ class_name Settings
 @onready var music_slider = %MusicSlider
 @onready var fullscreen_toggle = %"Fullscreen Toggle"
 
+@onready var quit_timer = $QuitTimer
+
 @onready var nine_patch_rect = $NinePatchRect
+
+@onready var sf_xtest = $SFXtest
+
 
 var master_bus_index:int
 var music_bus_index:int
@@ -33,6 +38,8 @@ func _on_master_slider_value_changed(value):
 
 func _on_sfx_slider_value_changed(value):
 	AudioServer.set_bus_volume_db(sfx_bus_index, linear_to_db(value))
+	if sfx_slider.has_focus() and not sf_xtest.playing:
+		sf_xtest.play()
 
 
 func _on_music_slider_value_changed(value):
@@ -52,10 +59,17 @@ func _on_music_slider_mouse_exited():
 
 
 func _on_quit_button_pressed():
+	visible = false
+	
+		#allows for button sound to finish
+	quit_timer.start()
+	await quit_timer.timeout
+	
 	queue_free()
 
 
 func _on_fullscreen_toggle_pressed():
+	$FSswitch.play()
 	if fullscreen_toggle.button_pressed:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:

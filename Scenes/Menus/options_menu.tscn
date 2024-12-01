@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cq244cu7oma5j"]
+[gd_scene load_steps=12 format=3 uid="uid://cq244cu7oma5j"]
 
 [ext_resource type="Texture2D" uid="uid://b8ehphkjs1iwr" path="res://Resources/Sprites/UI/Menus/MenuPanel.png" id="1_ctxny"]
 [ext_resource type="Script" path="res://Scenes/Menus/options_menu.gd" id="1_dgmn1"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://chvldwh2dohef" path="res://Scenes/Menus/MenuComponents/menu_button.tscn" id="3_oy7mo"]
 [ext_resource type="Texture2D" uid="uid://cqip7nn1nykbf" path="res://Resources/Sprites/UI/Menus/FSButton1.png" id="4_rfhe7"]
 [ext_resource type="Texture2D" uid="uid://b73g3q7gevhe" path="res://Resources/Sprites/UI/Menus/FSButton2.png" id="5_lg6qj"]
+[ext_resource type="AudioStream" uid="uid://dju88uush8jmt" path="res://Resources/Sounds/SFX/Button1.wav" id="7_iqdty"]
+[ext_resource type="AudioStream" uid="uid://bc0ld868n06fe" path="res://Resources/Sounds/SFX/Switch.wav" id="8_l1kqn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ixj5"]
 
@@ -159,11 +161,23 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_p7di2")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_7dge6")
 theme_override_styles/normal = SubResource("StyleBoxTexture_p7di2")
 toggle_mode = true
+action_mode = 0
 
 [node name="Quit Button" parent="NinePatchRect/MarginContainer/VBoxContainer/MarginContainer/CenterContainer/GridContainer" instance=ExtResource("3_oy7mo")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "back"
+
+[node name="QuitTimer" type="Timer" parent="."]
+wait_time = 0.4
+
+[node name="SFXtest" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_iqdty")
+bus = &"SFX"
+
+[node name="FSswitch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_l1kqn")
+bus = &"SFX"
 
 [connection signal="mouse_exited" from="NinePatchRect/MarginContainer/VBoxContainer/MarginContainer/CenterContainer/GridContainer/MasterHBox/MasterSlider" to="." method="_on_master_slider_mouse_exited"]
 [connection signal="value_changed" from="NinePatchRect/MarginContainer/VBoxContainer/MarginContainer/CenterContainer/GridContainer/MasterHBox/MasterSlider" to="." method="_on_master_slider_value_changed"]

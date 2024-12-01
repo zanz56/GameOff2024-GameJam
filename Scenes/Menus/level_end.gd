@@ -22,3 +22,6 @@ func play_end(correct: bool):
 		animation_player.play("CorrectChoice")
 	else:
 		animation_player.play("IncorrectChoice")
+
+func music_fade():
+	GlobalMusic.fade_music()
